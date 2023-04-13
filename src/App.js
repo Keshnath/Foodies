@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React, { Children, lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import HeaderComponent from "./components/Header";
 import Body from "./components/Body";
@@ -7,7 +7,9 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "./components/about";
 import Contact from "./components/constact";
 import Menu from "./components/RestaurentMenu";
+import Profile from "./components/Profile";
 
+const Instamart = lazy(() => import("./components/Instamart"));
 // driven ui
 
 const AppLayout = () => {
@@ -32,6 +34,13 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+        // for rendering this chile we have to use outlet in its parent component !
+        children: [
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+        ],
       },
       {
         path: "/contact",
@@ -40,6 +49,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurent/:id",
         element: <Menu />,
+      },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<h1>Loding .... </h1>}>
+            <Instamart />
+          </Suspense>
+        ),
       },
     ],
   },

@@ -3,15 +3,10 @@ import { ResturantCard } from "./RestaurentCard";
 import { useEffect, useState } from "react";
 import Shimer from "./shimer";
 import { Link } from "react-router-dom";
+import { filterData } from "../../utils/helper";
+import { CARD_URl } from "../constant";
+import useIsonline from "../../utils/useIsonline";
 // import Menu from "./RestaurentMenu";
-
-function filterData(RestaurentList, searchText) {
-  const data = RestaurentList.filter((e) =>
-    e.data.name.toLowerCase().includes(searchText.toLowerCase())
-  );
-  // console.log(data);
-  return data;
-}
 
 // json.data.cards[2].data.data.cards
 
@@ -21,9 +16,7 @@ let Body = () => {
   const [searchList, setsearchList] = useState([]);
 
   async function Apicall() {
-    let data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.4704651&lng=80.2407399&page_type=DESKTOP_WEB_LISTING"
-    );
+    let data = await fetch(CARD_URl);
     let json = await data.json();
     // optional chaining
     let cardList = json?.data?.cards[2]?.data?.data?.cards;
@@ -34,6 +27,12 @@ let Body = () => {
   useEffect(() => {
     Apicall();
   }, []);
+
+  const isOnline = useIsonline();
+
+  if (!isOnline) {
+    return <h1>OOps something wents wrong seems like you are offline !</h1>;
+  }
 
   return RestaurentList.length === 0 ? (
     <Shimer />

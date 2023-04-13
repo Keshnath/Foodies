@@ -69,3 +69,7 @@
     
     margin: 20px;
 }
+.menu-items{
+    display: flex;
+    justify-content: space-between;
+}
