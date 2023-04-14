@@ -38,7 +38,7 @@ let Body = () => {
     <Shimer />
   ) : (
     <>
-      <div className="search-bar">
+      <div className="m-10 box-border ">
         <input
           type="text"
           placeholder="Search.."
@@ -47,7 +47,7 @@ let Body = () => {
             setSearchText(e.target.value);
           }}
         />
-        <button
+        <button className="bg-slate-600 rounded-md text-white  "
           onClick={() => {
             const data = filterData(RestaurentList, searchText);
             setsearchList(data);
@@ -56,7 +56,7 @@ let Body = () => {
           Search
         </button>
       </div>
-      <div className="restaurent-list">
+      <div className="flex flex-wrap justify-between m-5  ">
         {searchList.map((e) => {
           return (
             <Link to={"/restaurent/" + e.data.id} key={e.data.id}>

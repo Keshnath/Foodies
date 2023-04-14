@@ -18,17 +18,17 @@ const Menu = () => {
   }
 
   return (
-    <div className="menu-items">
-      <div>
-        <h1>Restaurent : {resDetails.name}</h1>
-        <h2>restaurantId : {resDetails.id}</h2>
-        <img src={Img_CDN + resDetails.cloudinaryImageId} />
-        <h2>{resDetails.costForTwoMessage}</h2>
+    <div className="flex justify-between">
+      <div className="w-52 m-5">
+        <h1 className="text-lg ">Restaurent : {resDetails.name}</h1>
+        <h2 className="py-2">restaurantId : {resDetails.id}</h2>
+        <img  className="rounded-md" src={Img_CDN + resDetails.cloudinaryImageId} />
+        <h2 className="py-3">{resDetails.costForTwoMessage}</h2>
         <h3>{resDetails.avgRating}</h3>
       </div>
 
       <div>
-        <h1>Menu</h1>
+        <h1 className="text-xl py-2">Menu</h1>
         <ul>
           {Object.values(MenuDetails?.data?.menu?.items).map((e) => (
             <li key={e.id}>{e.name} ---- {e.price / 100}</li>
