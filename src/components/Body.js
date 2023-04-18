@@ -1,4 +1,3 @@
-import { Card } from "../constant";
 import { ResturantCard } from "./RestaurentCard";
 import { useEffect, useState } from "react";
 import Shimer from "./shimer";
@@ -6,9 +5,6 @@ import { Link } from "react-router-dom";
 import { filterData } from "../../utils/helper";
 import { CARD_URl } from "../constant";
 import useIsonline from "../../utils/useIsonline";
-// import Menu from "./RestaurentMenu";
-
-// json.data.cards[2].data.data.cards
 
 let Body = () => {
   const [searchText, setSearchText] = useState("");
@@ -18,6 +14,7 @@ let Body = () => {
   async function Apicall() {
     let data = await fetch(CARD_URl);
     let json = await data.json();
+
     // optional chaining
     let cardList = json?.data?.cards[2]?.data?.data?.cards;
     setRestaurentList(cardList);
@@ -47,7 +44,8 @@ let Body = () => {
             setSearchText(e.target.value);
           }}
         />
-        <button className="bg-slate-600 rounded-md text-white  "
+        <button
+          className="bg-slate-600 rounded-md text-white  "
           onClick={() => {
             const data = filterData(RestaurentList, searchText);
             setsearchList(data);

@@ -7,7 +7,8 @@ const About = () => {
       <Link to="profile">
         <button>Click</button>
       </Link>
-      {<Outlet />}
+      
+      {<Outlet />} 
     </>
   );
 };

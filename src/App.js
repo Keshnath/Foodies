@@ -1,4 +1,4 @@
-import React, { Children, lazy, Suspense } from "react";
+import React, { Children, lazy, Suspense, useContext, useState } from "react";
 import ReactDOM from "react-dom/client";
 import HeaderComponent from "./components/Header";
 import Body from "./components/Body";
@@ -8,17 +8,29 @@ import About from "./components/about";
 import Contact from "./components/constact";
 import Menu from "./components/RestaurentMenu";
 import Profile from "./components/Profile";
+import usersContext from "../utils/UserContext";
+import { Provider } from "react-redux";
+import store from "../utils/store";
+import { Card } from "./constant";
+import Cart from "./components/Cart";
 
 const Instamart = lazy(() => import("./components/Instamart"));
 // driven ui
 
 const AppLayout = () => {
+  const [user, setuser] = useState({
+    name: "shubham",
+    email: "email@gmail",
+  });
+
   return (
-    <>
-      <HeaderComponent />
-      <Outlet />
-      <Footer />
-    </>
+    <Provider store={store}>
+      <usersContext.Provider value={{ users: user }}>
+        <HeaderComponent />
+        <Outlet />
+        <Footer />
+      </usersContext.Provider>
+    </Provider>
   );
 };
 
@@ -58,6 +70,10 @@ const appRouter = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path : '/cart',
+        element : <Cart />
+      }
     ],
   },
 ]);
