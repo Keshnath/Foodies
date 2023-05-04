@@ -21,8 +21,8 @@ const Menu = () => {
   }
 
   return (
-    <div className="flex ">
-      <div className="w-52 m-5">
+    <div className="flex justify-between">
+      <div className="w-52 m-5 ">
         <h1 className="text-lg ">Restaurent : {resDetails.name}</h1>
         <h2 className="py-2">restaurantId : {resDetails.id}</h2>
         <img
@@ -30,17 +30,17 @@ const Menu = () => {
           src={Img_CDN + resDetails.cloudinaryImageId}
         />
         <h2 className="py-3">{resDetails.costForTwoMessage}</h2>
-        <h3>{resDetails.avgRating}</h3>
+        <h3>{resDetails.avgRating} Stars</h3>
       </div>
-      
-      <div>
+
+      <div className="flex-col text-center ">
         <h1 className="text-xl py-2">Menu</h1>
         <ul>
           {Object.values(items).map((e) => (
             <li key={e.id}>
               {e.name} ---- {e.price / 100}
               <button
-                className="bg-green-200 m-2 p-2"
+                className="bg-green-200 m-3 px-3 rounded-md "
                 onClick={() => {
                   dispatch(addItems(e));
                 }}

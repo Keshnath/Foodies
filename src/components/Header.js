@@ -41,7 +41,7 @@ const HeaderComponent = () => {
 
           <li className="p-3">
             {" "}
-            <Link to="/cart">Cart {cartItems.length} - items</Link>
+            <Link to="/cart">Cart  {cartItems.length}</Link>
           </li>
           {/* <li>{users.name}</li> */}
         </ul>

@@ -32,11 +32,11 @@ let Body = () => {
   }
 
   return RestaurentList.length === 0 ? (
-    <Shimer />
+    <Shimer/>
   ) : (
     <>
-      <div className="m-10 box-border ">
-        <input
+      <div className="m-10 box-border  ">
+        <input className="border border-black rounded-md r"
           type="text"
           placeholder="Search.."
           value={searchText}
@@ -45,7 +45,7 @@ let Body = () => {
           }}
         />
         <button
-          className="bg-slate-600 rounded-md text-white  "
+          className="bg-green-200 rounded-md text-black px-2 text-center  ml-2 "
           onClick={() => {
             const data = filterData(RestaurentList, searchText);
             setsearchList(data);
